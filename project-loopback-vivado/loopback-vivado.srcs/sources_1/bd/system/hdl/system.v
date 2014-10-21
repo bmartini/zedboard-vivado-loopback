@@ -1,8 +1,8 @@
 //Copyright 1986-2014 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2014.2 (lin64) Build 932637 Wed Jun 11 13:12:34 MDT 2014
-//Date        : Fri Oct 10 21:02:18 2014
-//Host        : elab.ecn.purdue.edu running 64-bit Red Hat Enterprise Linux Workstation release 6.5 (Santiago)
+//Date        : Tue Oct 21 11:51:16 2014
+//Host        : elab.ecn.purdue.edu running 64-bit Red Hat Enterprise Linux Workstation release 6.6 (Santiago)
 //Command     : generate_target system.bd
 //Design      : system
 //Purpose     : IP block netlist
@@ -1066,7 +1066,7 @@ system_auto_us_1 auto_us
         .s_axi_wvalid(s01_couplers_to_auto_us_WVALID));
 endmodule
 
-(* CORE_GENERATION_INFO = "system,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLanguage=VERILOG,numBlks=14,numReposBlks=8,numNonXlnxBlks=0,numHierBlks=6,maxHierDepth=0}" *) 
+(* CORE_GENERATION_INFO = "system,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLanguage=VERILOG,numBlks=15,numReposBlks=9,numNonXlnxBlks=0,numHierBlks=6,maxHierDepth=0}" *) 
 module system
    (DDR_addr,
     DDR_ba,
@@ -1147,6 +1147,8 @@ module system
   wire axi_dma_0_M_AXI_S2MM_WREADY;
   wire [3:0]axi_dma_0_M_AXI_S2MM_WSTRB;
   wire axi_dma_0_M_AXI_S2MM_WVALID;
+  wire axi_dma_0_mm2s_introut;
+  wire axi_dma_0_s2mm_introut;
   wire [31:0]axi_mem_intercon_M00_AXI_ARADDR;
   wire [1:0]axi_mem_intercon_M00_AXI_ARBURST;
   wire [3:0]axi_mem_intercon_M00_AXI_ARCACHE;
@@ -1264,6 +1266,7 @@ module system
   wire processing_system7_0_axi_periph_M00_AXI_WVALID;
   wire [0:0]rst_processing_system7_0_100M_interconnect_aresetn;
   wire [0:0]rst_processing_system7_0_100M_peripheral_aresetn;
+  wire [1:0]xlconcat_0_dout;
 
 GND GND
        (.G(GND_1));
@@ -1307,6 +1310,8 @@ system_axi_dma_0_0 axi_dma_0
         .m_axis_mm2s_tlast(axi_dma_0_M_AXIS_MM2S_TLAST),
         .m_axis_mm2s_tready(axi_dma_0_M_AXIS_MM2S_TREADY),
         .m_axis_mm2s_tvalid(axi_dma_0_M_AXIS_MM2S_TVALID),
+        .mm2s_introut(axi_dma_0_mm2s_introut),
+        .s2mm_introut(axi_dma_0_s2mm_introut),
         .s_axi_lite_aclk(processing_system7_0_FCLK_CLK0),
         .s_axi_lite_araddr(processing_system7_0_axi_periph_M00_AXI_ARADDR),
         .s_axi_lite_arready(processing_system7_0_axi_periph_M00_AXI_ARREADY),
@@ -1425,6 +1430,7 @@ system_processing_system7_0_0 processing_system7_0
         .DDR_WEB(DDR_we_n),
         .FCLK_CLK0(processing_system7_0_FCLK_CLK0),
         .FCLK_RESET0_N(processing_system7_0_FCLK_RESET0_N),
+        .IRQ_F2P(xlconcat_0_dout),
         .MIO(FIXED_IO_mio[53:0]),
         .M_AXI_GP0_ACLK(processing_system7_0_FCLK_CLK0),
         .M_AXI_GP0_ARADDR(processing_system7_0_M_AXI_GP0_ARADDR),
@@ -1579,6 +1585,10 @@ system_rst_processing_system7_0_100M_0 rst_processing_system7_0_100M
         .mb_debug_sys_rst(GND_1),
         .peripheral_aresetn(rst_processing_system7_0_100M_peripheral_aresetn),
         .slowest_sync_clk(processing_system7_0_FCLK_CLK0));
+system_xlconcat_0_0 xlconcat_0
+       (.In0(axi_dma_0_mm2s_introut),
+        .In1(axi_dma_0_s2mm_introut),
+        .dout(xlconcat_0_dout));
 endmodule
 
 module system_axi_mem_intercon_0

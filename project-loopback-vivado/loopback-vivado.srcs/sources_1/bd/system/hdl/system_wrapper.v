@@ -1,8 +1,8 @@
 //Copyright 1986-2014 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2014.2 (lin64) Build 932637 Wed Jun 11 13:12:34 MDT 2014
-//Date        : Fri Oct 10 21:02:18 2014
-//Host        : elab.ecn.purdue.edu running 64-bit Red Hat Enterprise Linux Workstation release 6.5 (Santiago)
+//Date        : Tue Oct 21 11:51:16 2014
+//Host        : elab.ecn.purdue.edu running 64-bit Red Hat Enterprise Linux Workstation release 6.6 (Santiago)
 //Command     : generate_target system_wrapper.bd
 //Design      : system_wrapper
 //Purpose     : IP block netlist
